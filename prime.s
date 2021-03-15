@@ -24,7 +24,7 @@ factorize:
     xor edx, edx ; edx = 0 
     mov [ebp-4], eax ; save number ( tham số được truyền vào )
     div ebx ; start with div 2
-    cmp edx, 0
+    cmp edx, 0 ; compare remainder with 0
     je _process
     inc ebx      ; inc_divisor
     mov eax, [ebp-4] ; pop number
