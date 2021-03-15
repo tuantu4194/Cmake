@@ -22,7 +22,7 @@ factorize:
 ; process of factorization
     _next_divisor:
     xor edx, edx ; edx = 0 
-    mov [ebp-4], eax ; save number
+    mov [ebp-4], eax ; save number ( tham số được truyền vào )
     div ebx ; start with div 2
     cmp edx, 0
     je _process
