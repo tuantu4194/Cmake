@@ -13,9 +13,9 @@ factorize:
     push edi
     push ebx
 
-    mov eax, [ebp+8]    ; number
+    mov eax, [ebp+8]    ; number ( truyền tham số - parameter 1 )
     mov [ebp-4], eax
-    mov edi, [ebp+12]   ; function for results
+    mov edi, [ebp+12]   ; function for results (parameter 2 )
 
 ; move first divisor
     mov ebx, 2
