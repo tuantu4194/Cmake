@@ -7,7 +7,7 @@ factorize:
 ; stack frame
     push ebp
     mov ebp, esp
-    sub esp, 4  ; local variable for number
+    sub esp, 4  ; local variable for number (push )
     
 ; save registers
     push edi
@@ -34,7 +34,7 @@ factorize:
     mov [ebp-4], eax  ; save number
     push ebx        ; process divisor
     call edi        
-    add esp, 4  
+    add esp, 4  ; 
     mov eax, [ebp-4] ; pop number
     cmp eax, 1   ; stop loop until number = 1
     je _return0
