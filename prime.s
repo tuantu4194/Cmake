@@ -35,7 +35,7 @@ factorize:
     push ebx        ; process divisor
     call edi        
     add esp, 4  ;  clear the stack (pop)
-    mov eax, [ebp-4] ; pop number
+    mov eax, [ebp-4] 
     cmp eax, 1   ; stop loop until number = 1
     je _return0
     jmp _next_del
