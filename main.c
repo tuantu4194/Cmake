@@ -21,7 +21,8 @@ int check_input_arg (int argc, char* argv[]){
     char* arg = argv[1];
     int i = 0;
     while (arg[i]!='\0'){
-        if (!( (arg[i]>='0' && arg[i]<='9') || (arg[i]=='-' && i==0))){
+        if (!( (arg[i]>='0' && arg[i]<='9') || (arg[i]=='-' && i==0)))
+        {
             printf ("This is not a number!!!\n");
             return 1;
         }
