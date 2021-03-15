@@ -36,7 +36,7 @@ factorize:
     call edi        
     add esp, 4
     mov eax, [ebp-4] ; pop number
-    cmp eax, 1   ; if number == 1 then stop
+    cmp eax, 1   ; stop loop until number = 1
     je _return0
     jmp _next_del
 
