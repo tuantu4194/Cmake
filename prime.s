@@ -21,9 +21,9 @@ factorize:
     mov ebx, 2
 ; process of factorization
     _next_divisor:
-    xor edx, edx
+    xor edx, edx ; edx = 0 
     mov [ebp-4], eax ; save number
-    div ebx
+    div ebx ; start with div 2
     cmp edx, 0
     je _process
     inc ebx      ; inc_divisor
