@@ -1,48 +1,51 @@
-global factorization
+global factorize
+section .text 
 
-section .text
-factorization:
+
+factorize:
+
     push ebp ;prolog
     mov ebp, esp
-
+    
+    
+; save registers
+    push edi
     push ebx
     push esi
-    push edi
 
-    mov eax, [ebp+8] ;number
-    mov edi, [ebp+12] ;callback 
-    mov ebx, 2 ;factor
+    mov eax, [ebp+8]    ; number
+    mov edi, [ebp+12]   ; call C
 
-_factor:
-    cmp eax, 1 ;div until eax= 1
-    je .exit
-
-    mov esi, eax
-    xor edx, edx
-    div ebx ; / 2 
-
-    cmp edx, 0 
-    jne .update_factor
-
-    mov esi, eax
-    push eax  
-    push ebx
-    call edi ;callback if the factor is correct
-    add esp, 8 ; (because push eax, ebx,  remove the top 8 bytes from the stack.)
+; move first divisor
     mov ebx, 2
-    mov eax, esi
-    jmp _factor ; div ebx until it's can't, if no will update
+; process of factorization
+    _next_divisor:
+    xor edx, edx
+    mov [ebp-4], eax ; save number
+    div ebx
+    cmp edx, 0
+    je _process
+    inc ebx      ; inc_divisor
+    mov eax, [ebp-4] ; pop number
+    jmp _next_divisor
 
-    .update_factor:
-        mov eax, esi
-        add ebx, 1
-        jmp _factor
+    _process:
+    mov [ebp-4], eax  ; save number
+    push ebx        ; process divisor
+    call edi        
+    add esp, 4
+    mov eax, [ebp-4] ; pop number
+    cmp eax, 1   ; if number == 1 then stop
+    je _return0
+    jmp _next_del
 
-    .exit:
-    pop edi ;epilog and exit from function
-    pop esi
+    _return0:
+    mov eax, 0
+; return value registers
     pop ebx
+    pop edi
 
+; remove stack frame
     mov esp, ebp
-    pop ebp
-    ret
+    pop ebp 
+    ret 
