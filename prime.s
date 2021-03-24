@@ -31,7 +31,7 @@ _factor:
     add esp, 8 ; (because push eax, ebx,  remove the top 8 bytes from the stack.)
     mov ebx, 2
     mov eax, esi
-    jmp _factor
+    jmp _factor ; div ebx until it's can't, if no will update
 
     .update_factor:
         mov eax, esi
