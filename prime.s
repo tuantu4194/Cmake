@@ -28,7 +28,7 @@ _factor:
     push eax  
     push ebx
     call edi ;callback if the factor is correct
-    add esp, 8
+    add esp, 8 ; (because push eax, ebx,  remove the top 8 bytes from the stack.)
     mov ebx, 2
     mov eax, esi
     jmp _factor
