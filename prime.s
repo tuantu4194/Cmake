@@ -33,7 +33,7 @@ factorize:
     mov [ebp-4], eax  ; save number
     push ebx        ; process divisor
     call edi        
-    add esp, 4
+    add esp, 4 ; (push ebx, 4 remove top 4 bytes from stack)
     mov eax, [ebp-4] ; pop number
     cmp eax, 1   ; if number == 1 then stop
     je _return0
