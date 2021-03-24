@@ -1,52 +1,48 @@
-global factorize
-section .text 
+global factorization
 
-; first argument number
-; second argument function for results
-factorize:
-; stack frame
-    push ebp
+section .text
+factorization:
+    push ebp ;prolog
     mov ebp, esp
-    sub esp, 4  ; local variable for number (push )
-    
-; save registers
-    push edi
+
     push ebx
+    push esi
+    push edi
 
-    mov eax, [ebp+8]    ; number ( truyền tham số - parameter 1 )
-    mov [ebp-4], eax
-    mov edi, [ebp+12]   ; function for results (parameter 2 )
+    mov eax, [ebp+8] ;number
+    mov edi, [ebp+12] ;callback 
+    mov ebx, 2 ;factor
 
-; move first divisor
+_factor:
+    cmp eax, 1 ;div until eax= 1
+    je .exit
+
+    mov esi, eax
+    xor edx, edx
+    div ebx ; / 2 
+
+    cmp edx, 0 
+    jne .update_factor
+
+    mov esi, eax
+    push eax  
+    push ebx
+    call edi ;callback if the factor is correct
+    add esp, 8
     mov ebx, 2
-; process of factorization
-    _next_divisor:
-    xor edx, edx ; edx = 0 
-    mov [ebp-4], eax ; save number ( tham số được truyền vào )
-    div ebx ; start with div 2
-    cmp edx, 0 ; compare remainder with 0
-    je _process
-    inc ebx      ; inc_divisor
-    mov eax, [ebp-4] ; pop number
-    jmp _next_divisor
+    mov eax, esi
+    jmp _factor
 
-    _process:
-    mov [ebp-4], eax  ; save number
-    push ebx        ; process divisor
-    call edi        
-    add esp, 4  ;  clear the stack (pop)
-    mov eax, [ebp-4] 
-    cmp eax, 1   ; stop loop until number = 1
-    je _return0
-    jmp _next_del
+    .update_factor:
+        mov eax, esi
+        add ebx, 1
+        jmp _factor
 
-    _return0:
-    mov eax, 0
-; return value registers
+    .exit:
+    pop edi ;epilog and exit from function
+    pop esi
     pop ebx
-    pop edi
 
-; remove stack frame
     mov esp, ebp
-    pop ebp 
-    ret 
+    pop ebp
+    ret
