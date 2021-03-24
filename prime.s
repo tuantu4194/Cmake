@@ -6,7 +6,7 @@ factorize:
 
     push ebp ;prolog
     mov ebp, esp
-    
+    sub esp,
     
 ; save registers
     push edi
