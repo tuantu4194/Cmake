@@ -2,7 +2,6 @@
 #include<stdlib.h>
 #include<string.h>
 
-#define newline printf("\n")
 int special_case(int x){
     if (x >= -1 && x <= 1){
         printf("Got result: %d\n", x);
@@ -64,6 +63,7 @@ int main(int argc, char* argv[]){
     else {printf("Result: ");}
 
     int ret_asm = factorize(num, process_results);
-    newline;
+    
+    printf("\n");
     return ret_asm;
 }
