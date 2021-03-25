@@ -27,7 +27,7 @@ factorize:
     je _process
     inc ebx      ; inc_divisor
     mov eax, [ebp-4] ; pop number
-    jmp _next_del
+    jmp _next_divisor
 
     _process:
     mov [ebp-4], eax  ; save number
