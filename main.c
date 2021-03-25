@@ -14,7 +14,7 @@ int special_case(int x){
 
 int check_input_arg (int argc, char* argv[]){
     if (argc != 2){
-        printf ("Need only 1 argument, which is the number for factorization!\n");
+        printf ("Need only 1 argument,it's number \n");
         return 1;
     }
 
@@ -29,7 +29,7 @@ int check_input_arg (int argc, char* argv[]){
         i++;
     }
 
-    if (arg[0]=='-') {i--;}
+    if (arg[0]=='-') {i--;} // if it's minus number
 
     if (i > 9){
         printf ("The number is too large!!!\n");
@@ -51,7 +51,7 @@ int main(int argc, char* argv[]){
         return 1;
     }
 
-    int num = atoi(argv[1]);
+    int num = atoi(argv[1]); // convert arr to int
 
     if (special_case(num)){
         return 0;
