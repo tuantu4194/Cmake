@@ -37,7 +37,7 @@ factorize:
     mov eax, [ebp-4] ; pop number
     cmp eax, 1   ; if number == 1 then stop
     je _return0
-    jmp _next_del
+    jmp _next_divisor
 
     _return0:
     mov eax, 0
