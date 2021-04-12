@@ -2,8 +2,10 @@
 #include<stdlib.h>
 #include<string.h>
 
-int special_case(int x){
-    if (x >= -1 && x <= 1){
+int special_case(int x)
+{
+    if (x == -1 || x = 1)
+    {
         printf("Got result: %d\n", x);
         return 1;
     }
@@ -11,8 +13,10 @@ int special_case(int x){
     return 0;
 }
 
-int check_input_arg (int argc, char* argv[]){
-    if (argc != 2){
+int check_input_arg (int argc, char* argv[])
+{
+    if (argc != 2)
+    {
         printf ("Need only 1 argument,it's number \n");
         return 1;
     }
@@ -41,22 +45,26 @@ int check_input_arg (int argc, char* argv[]){
 typedef void (*callback)(int);
 extern int factorize(int num, callback cb);
 
-void process_results(int x){
+void process_results(int x)
+{
     printf("%d ", x);
 }
 
 int main(int argc, char* argv[]){
-    if (check_input_arg(argc, argv)){
+    if (check_input_arg(argc, argv)) // check input
+    {
         return 1;
     }
 
     int num = atoi(argv[1]); // convert arr to int
 
-    if (special_case(num)){
+    if (special_case(num)) // check special case
+    {
         return 0;
     }
 
-    if (num < 0){
+    if (num < 0) // take --= +
+    {
         printf("Result: -1 ");
         num = abs(num);
     }
